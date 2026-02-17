@@ -1,0 +1,426 @@
+/* ============================================
+   KoH War Room - Components (Extended)
+   Badges, intel elements, toasts, dialogs,
+   profiles, resource icons.
+   ============================================ */
+
+/* --- Level Badges --- */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  min-width: 44px;
+  text-align: center;
+}
+
+.level-badge.level-15 { background: rgba(34, 197, 94, 0.2); color: var(--level-15); }
+.level-badge.level-16 { background: rgba(74, 222, 128, 0.2); color: var(--level-16); }
+.level-badge.level-17 { background: rgba(251, 191, 36, 0.2); color: var(--level-17); }
+.level-badge.level-18 { background: rgba(249, 115, 22, 0.2); color: var(--level-18); }
+.level-badge.level-19 { background: rgba(239, 68, 68, 0.2); color: var(--level-19); }
+.level-badge.level-20 { background: rgba(220, 38, 38, 0.2); color: var(--level-20); }
+.level-badge.level-21 { background: rgba(168, 85, 247, 0.2); color: var(--level-21); }
+
+/* Mob level badges (dynamic) */
+.mob-level-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  min-width: 44px;
+  background: rgba(249, 115, 22, 0.2);
+  color: var(--accent-orange);
+}
+
+/* --- Intel List --- */
+.intel-list {
+  list-style: none;
+  counter-reset: intel;
+}
+
+.intel-list li {
+  counter-increment: intel;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-sm) 0;
+  border-bottom: 1px solid rgba(42, 58, 92, 0.3);
+  font-size: 0.9rem;
+}
+
+.intel-list li::before {
+  content: counter(intel) '.';
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-accent);
+  min-width: 24px;
+}
+
+.intel-list .enemy-name {
+  font-weight: 700;
+  color: var(--text-warning);
+}
+
+.intel-list .count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  color: var(--text-accent);
+}
+
+/* --- Level Bars (Intel) --- */
+.level-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.level-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.level-bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  min-width: 50px;
+  color: var(--text-secondary);
+}
+
+.level-bar-track {
+  flex: 1;
+  height: 20px;
+  background: var(--bg-input);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.level-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 500ms ease;
+  min-width: 0;
+}
+
+.level-bar-count {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-accent);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* --- Peak Hours --- */
+.peak-hours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.peak-hour-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-sm);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+}
+
+.peak-hour-time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-accent);
+  min-width: 80px;
+}
+
+.peak-hour-bar {
+  flex: 1;
+  height: 14px;
+  background: var(--bg-secondary);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.peak-hour-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+  border-radius: 7px;
+}
+
+/* --- Profile Detail --- */
+.profile-controls {
+  margin-bottom: var(--sp-lg);
+}
+
+.profile-detail {
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: var(--sp-lg);
+}
+
+.profile-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.profile-stat {
+  text-align: center;
+}
+
+.profile-stat .val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.profile-stat .lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Toast Notifications --- */
+.toast-container {
+  position: fixed;
+  top: var(--sp-xl);
+  right: var(--sp-xl);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-md) var(--sp-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  animation: toastIn 300ms ease, toastOut 300ms ease 2.7s;
+  min-width: 280px;
+  max-width: 420px;
+}
+
+.toast.success { border-left: 4px solid var(--accent-green); }
+.toast.error { border-left: 4px solid var(--accent-red); }
+.toast.info { border-left: 4px solid var(--accent-blue); }
+
+.toast-icon { font-size: 1.2rem; flex-shrink: 0; }
+.toast-message { flex: 1; font-size: 0.9rem; }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateX(40px); }
+}
+
+/* --- Confirm Dialog --- */
+.confirm-dialog {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-xl);
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+}
+
+.confirm-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.confirm-dialog h3 {
+  font-family: var(--font-display);
+  margin-bottom: var(--sp-md);
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: var(--sp-md);
+  justify-content: flex-end;
+  margin-top: var(--sp-lg);
+}
+
+/* --- Empty State --- */
+.empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--sp-lg);
+}
+
+/* --- Resource icon colors --- */
+.resource-food { color: #fbbf24; }
+.resource-wood { color: #a3e635; }
+.resource-stone { color: #94a3b8; }
+.resource-iron { color: #60a5fa; }
+.resource-gold { color: #fcd34d; }
+
+/* --- User Badge (Header) --- */
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-xs) var(--sp-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  cursor: default;
+}
+
+.user-badge-icon {
+  font-size: 1.1rem;
+}
+
+.user-badge-name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  letter-spacing: 1px;
+}
+
+.user-badge-name.not-set {
+  color: var(--text-danger);
+  font-style: italic;
+}
+
+/* --- Welcome Dialog --- */
+.welcome-dialog {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-xl);
+  padding: 0;
+  max-width: 480px;
+  width: 90vw;
+  box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
+  overflow: hidden;
+}
+
+.welcome-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.welcome-content {
+  padding: var(--sp-2xl);
+  text-align: center;
+}
+
+.welcome-icon {
+  font-size: 3rem;
+  margin-bottom: var(--sp-md);
+}
+
+.welcome-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+  letter-spacing: 2px;
+}
+
+.welcome-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-xl);
+}
+
+.welcome-content .form-group {
+  text-align: left;
+  margin-bottom: var(--sp-lg);
+}
+
+.welcome-btn {
+  width: 100%;
+  padding: var(--sp-md) !important;
+  font-size: 1rem !important;
+  margin-top: var(--sp-md);
+}
+
+/* --- Settings --- */
+.settings-section {
+  margin-bottom: var(--sp-lg);
+}
+
+.settings-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+  letter-spacing: 1px;
+}
+
+.settings-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: var(--sp-lg);
+  line-height: 1.6;
+}
+
+/* --- Username History --- */
+.username-history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-sm) var(--sp-md);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-purple);
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+
+.history-names {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.history-old {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.history-arrow {
+  color: var(--accent-purple);
+  font-weight: 700;
+}
+
+.history-new {
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+.history-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
